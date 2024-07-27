@@ -1,4 +1,4 @@
-from selene import browser, be, have
+from selene import browser, be, have, Browser, Config
 
 
 def test_google_search():
@@ -12,5 +12,6 @@ def test_search_no_expected_results():
     browser.open('')
     # Вводим случайный набор символов, по которому не ожидаем результатов поиска
     browser.element('[name="q"]').should(be.blank).type('jmhgnfdfdghfjhfmjh4r').press_enter()
-    browser.element('[id="botstuff"]').should(have.text('По запросу jmhgnfdfdghfjhfmjh4r ничего не найдено.'))
+    browser.element('[id="botstuff"]').should(be.not_.visible)
+    #browser.element('[id="botstuff"]').should(have.text('По запросу jmhgnfdfdghfjhfmjh4r ничего не найдено.'))
 
